@@ -39,11 +39,6 @@ void Model::unbindModel() {
 #else
   glBindVertexArray(0);
 #endif
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
-  glDisableVertexAttribArray(vPosition);
-  glDisableVertexAttribArray(vColor);//*/
-  //disabling the program will cause the model to not register matrix updates
-  //glUseProgram(0);
 }
 
 void Model::bindModel() {
@@ -51,10 +46,5 @@ void Model::bindModel() {
   glBindVertexArrayAPPLE(vao);
 #else
   glBindVertexArray(vao);
-#endif//*/
-  glUseProgram(program);
-  glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-  //glEnableVertexAttribArray(vPosition);
-  glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
-  //glEnableVertexAttribArray(vColor);//*/
+#endif
 }
