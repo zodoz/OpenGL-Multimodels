@@ -41,9 +41,6 @@ void Square::buildModel() {
  * p3 - p4
  */
 void Square::buildFace(vec3* points, int i, vec3 p1, vec3 p2, vec3 p3, vec3 p4) {
-  /*points[i] = p1; points[i+1] = p2; points[i+2] = p3;
-  i+=3;
-  points[i] = p2; points[i+1] = p4; points[i+2] = p3;*/
   buildTri(points, i, p1, p2, p3);
   buildTri(points, i+3, p1, p4, p3);
 }

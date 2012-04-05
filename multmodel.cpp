@@ -81,16 +81,6 @@ vec3 randomColor() {
 //}}}1
 //{{{1 display()
 
-void renderModel(Model* m) {
-  m->bindModel();
-
-  printf("drawing model\n");
-  glDrawArrays(GL_TRIANGLES, 0, m->vertexCount);
-  printError();
-
-  m->unbindModel();
-}
-
 void display() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -98,18 +88,18 @@ void display() {
   printf("drawing\n");
   switch(drawMethod) {
     case DRAW_BOTH_SQUARE_FIRST:
-      renderModel(dynamic_cast<Model*>(s));
-      renderModel(dynamic_cast<Model*>(t));
+      s->render();
+      t->render();
       break;
     case DRAW_BOTH_TRI_FIRST:
-      renderModel(dynamic_cast<Model*>(t));
-      renderModel(dynamic_cast<Model*>(s));
+      t->render();
+      s->render();
       break;
     case DRAW_ONLY_SQUARE:
-      renderModel(dynamic_cast<Model*>(s));
+      s->render();
       break;
     case DRAW_ONLY_TRIANGLE:
-      renderModel(dynamic_cast<Model*>(t));
+      t->render();
       break;
   }
   printError();
@@ -165,10 +155,10 @@ void reshape(int w, int h) {
   GLfloat aspect = GLfloat(w)/h;
 
   mat4 proj = Ortho(-1, 1, -1, 1, -1, 1);
-  glUniformMatrix4fv(s->projection, 1, GL_TRUE, proj);
-  glUniformMatrix4fv(s->model_view, 1, GL_TRUE, mat4(1));//*/
-  glUniformMatrix4fv(t->projection, 1, GL_TRUE, proj);
-  glUniformMatrix4fv(t->model_view, 1, GL_TRUE, mat4(1));//*/
+  s->setProjection(proj);
+  s->setModelView(mat4(1));
+  t->setProjection(proj);
+  t->setModelView(mat4(1));
 }
 //}}}1
 

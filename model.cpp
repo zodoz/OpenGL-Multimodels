@@ -19,7 +19,7 @@ void Model::init() {
 
   buildModel();
 
-  model_view = glGetUniformLocation(program, "model_view");
+  modelView = glGetUniformLocation(program, "modelView");
   projection = glGetUniformLocation(program, "projection");
 
   unbindModel();
@@ -46,3 +46,35 @@ void Model::bindModel() {
   glBindVertexArray(vao);
 #endif
 }
+
+void Model::render() {
+  bindModel();
+  if(!customRender()) {
+    glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+  }
+  unbindModel();
+}
+//{{{ matrix set functions
+/*void Model::setWorldView(mat4 mat) {
+  glUniformMatrix4fv(worldView, 1, GL_TRUE, mat);
+}*/
+
+void Model::setModelView(mat4 mat) {
+  glUniformMatrix4fv(modelView, 1, GL_TRUE, mat);
+}
+
+void Model::setProjection(mat4 mat) {
+  glUniformMatrix4fv(projection, 1, GL_TRUE, mat);
+}
+//}}}
+//{{{ optional functions
+bool Model::customRender() {
+  return false;
+}
+
+void Model::preRender() {
+}
+
+void Model::postRender() {
+}
+//}}}
