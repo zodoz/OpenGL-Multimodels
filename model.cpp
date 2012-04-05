@@ -12,9 +12,7 @@ void Model::init() {
   glBindVertexArray(vao);
 #endif
   program = InitShader(vShader, fShader);
-  //glUseProgram(program);
-  vPosition = glGetAttribLocation(program, "vPosition");
-  vColor = glGetAttribLocation(program, "vColor");
+  glUseProgram(program);
 
   buffers = new GLuint[bufferCount];
   glGenBuffers(bufferCount, buffers);

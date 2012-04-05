@@ -7,6 +7,8 @@ class Tri: public Model {
   public:
     Tri();
     void buildModel();
+  private:
+    GLuint vPosition, vColor;
 };
 
 #endif

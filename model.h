@@ -5,7 +5,7 @@
 class Model {
   public:
     const char *vShader, *fShader;
-    GLuint vao, program, vPosition, vColor, model_view, projection;
+    GLuint vao, program, model_view, projection;
     GLuint* buffers;
     int vertexCount, bufferCount;
     virtual void buildModel() =0;

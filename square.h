@@ -9,6 +9,7 @@ class Square: public Model {
     Square();
   private:
     void buildFace(vec3*, int, vec3, vec3, vec3, vec3);
+    GLuint vPosition, vColor;
 };
 
 #endif
