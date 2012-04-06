@@ -60,10 +60,12 @@ void Model::render() {
 }*/
 
 void Model::setModelView(mat4 mat) {
+  glUseProgram(program);  //ensure that the correct program is bound
   glUniformMatrix4fv(modelView, 1, GL_TRUE, mat);
 }
 
 void Model::setProjection(mat4 mat) {
+  glUseProgram(program);  //ensure that the correct program is bound
   glUniformMatrix4fv(projection, 1, GL_TRUE, mat);
 }
 //}}}
