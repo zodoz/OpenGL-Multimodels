@@ -45,6 +45,7 @@ void Model::bindModel() {
 #else
   glBindVertexArray(vao);
 #endif
+  glUseProgram(program);
 }
 
 void Model::render() {
